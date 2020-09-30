@@ -82,6 +82,3 @@
                 Will instantiate a celestial body with mass, size, gravity, and an optional atmosphere. Needs revamping to fit current system.
                 Will be used to create Earth, Moon, Sun, Mars objects. Will be developed in that order.
                 This class will hold the gravitational and atmospheric effects particular to that body via the 'GravitationalForce()','AtmosphericDensity()', and 'AirResistance()' methods. Will optimize the 'Particle.G()' method and be implemented in 'Particle.move()', respectively.
-
-
-        /objects
