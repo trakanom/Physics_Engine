@@ -13,12 +13,12 @@ class Celestial_Body(Coordinates):
         self.populateConstants(1000)
     def populateConstants(self,entries):
         for i in range(entries):
-            print(f"Dicts populating...\t{round(100*i/entries)}% ({i}/{entries}).")
+            # print(f"Dicts populating...\t{round(100*i/entries)}% ({i}/{entries}).")
             i=1000*i
             self.GravitationalForce(i)
             if self.atmosphere!=True:
                 self.AtmosphericDensity(i)
-        print(*zip(self.gravity.keys(),self.gravity.values(),self.atmosphere.values()), sep="\n")
+        # print(*zip(self.gravity.keys(),self.gravity.values(),self.atmosphere.values()), sep="\n")
     def GravitationalForce(self,altitude):
 
         altitude=1000*round(altitude/1000,0)
@@ -26,7 +26,7 @@ class Celestial_Body(Coordinates):
         if altitude in self.gravity.keys():
             return self.gravity[altitude]
         else:
-            print(f"GRAVITY NOT FOUND AT {altitude}km, recalculating!")
+            # print(f"GRAVITY NOT FOUND AT {altitude}km, recalculating!")
             self.gravity[altitude] = -(gravitational_constant*self.mass)/(np.power(altitude+self.radius,2))
             # print(f"gravity at {altitude}: {gravity[altitude]}")
             return self.gravity[altitude]
@@ -63,8 +63,8 @@ class Celestial_Body(Coordinates):
                     density = p0 * M / (R*T_o) * np.power(1-(L*altitude)/T_o,g*M/(R*L)-1)
                 elif altitude<83600:
                     density=0.25
-                elif 83602>=altitude>=83600:
-                    print("You're probably in space.")
+                elif 84000>=altitude>=83600:
+                    # print("You're probably in space.")
                     density=0.0001
                 else:
                     density=0
