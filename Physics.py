@@ -5,6 +5,7 @@ import profile
 from classes.tools.Coordinates import Coordinates
 from classes.tools.physical_constants import gravitational_constant
 from classes.objects.Particle import Particle
+from classes.objects.Celestial_Body import Celestial_Body
 
 
 def FlyMyPretty():
@@ -39,19 +40,19 @@ def graphMe(xyzList):
     plt.show()
 
 if __name__ == '__main__':
-    origin = [0,0,0] #[x,y,z] meters
+    # origin = [0,0,0] #[x,y,z] meters
     #settings are mocking SpaceX's Starship specs.
-    Starship = Particle(label = "Starship", mass = 5000000, position=[0,0,100], velocity=[0,0,10], type="Cartesian")
+    Earth = Celestial_Body(label="Earth", mass=5.972*10**24, radius=6.371*10**6, atmosphere=True)
+    Starship = Particle(label = "Starship", mass = 5000000, position=[0,0,100], velocity=[0,0,10], type="Cartesian", primary_body=Earth)
     Starship.accel = [0,0,0] #[x,y,z] meters/sec**2
-
     #Time start, finish, and time resolution per step
     t_start = 0 #seconds
-    t_finish = 2*(60**2) #seconds
+    t_finish = 10*(60**2) #seconds
     t_step = 0.1 #seconds per iteration
 
     myForce = [0,0,65000000] #[x,y,z] Newtons, [t_0,t_f] seconds
     i_frame = [0,6*600] #Will be active from 0 to 3600 seconds.
-
+    print(Earth.AtmosphericDensity(1),Earth.AirResistance(velocity=[10,5],altitude=17800,area=1))
     graphMe(FlyMyPretty())
 
 
