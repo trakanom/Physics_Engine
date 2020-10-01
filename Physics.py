@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import profile
 Program_Start=time.time()
 from classes.tools.Coordinates import Coordinates
-from classes.tools.physical_constants import gravitational_constant
+from classes.tools.physical_constants import GRAVITATIONAL_CONSTANT
 from classes.objects.Particle import Particle
 from classes.objects.Celestial_Body import Celestial_Body
 
@@ -61,12 +61,13 @@ def graphMe(xyzList):
 if __name__ == '__main__':
     # origin = [0,0,0] #[x,y,z] meters
     #settings are mocking SpaceX's Starship specs.
-    Earth = Celestial_Body(label="Earth", mass=5.972*10**24, radius=6.371*10**6, atmosphere=True)
-    Starship = Particle(label = "Starship", mass = 5000000, position=[0,0,100], velocity=[0,0,10], type="Cartesian", primary_body=Earth,elasticity=0.5)
+    Sun = Celestial_Body(label="Sun",mass = 1.989*10**30,radius=696.34*10**6, atmosphere=False,type="Spherical")
+    Earth = Celestial_Body(label="Earth", mass=5.972*10**24, radius=6.371*10**6, position=tuple([149.78*10**6,0,0]), velocity=tuple([0,0,100]), atmosphere=True, type="Spherical", primary_body=Sun)
+    Starship = Particle(label = "Starship", mass = 5000000, position=tuple([0,0,100]), velocity=tuple([0,0,10]), type="Cartesian", primary_body=Earth,elasticity=0.5)
     #Time start, finish, and time resolution per step
     MovingObjects = [Starship]
     t_start = 0 #seconds
-    t_finish = 10*60**2 #seconds
+    t_finish = 60**2 #seconds
     t_step = 0.1 #seconds per iteration
 
 
@@ -75,7 +76,7 @@ if __name__ == '__main__':
     Prog_end=time.time()
     print(f"Runtime={Prog_end-Program_Start}")
     graphMe(results)
-
+    print(Sun.gravity)
     # print(*Starship.path,sep="\n")
 
 
