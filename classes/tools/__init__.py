@@ -3,6 +3,6 @@ from .Coordinates import Coordinates
 # from .Rocket import Rocket
 
 from .material_properties import Material
-from .physical_constants import gravitational_constant
+from .physical_constants import GRAVITATIONAL_CONSTANT
 
-# print(gravitational_constant)
+# print(GRAVITATIONAL_CONSTANT)
